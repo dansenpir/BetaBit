@@ -18,6 +18,8 @@ class PeopleController extends Controller
     {
         $people = People::create($request->all());
 
-        return view('admin.people.register');
+        // return view('admin.people.register');
+
+        return redirect()->route('dashboard');
     }
 }
