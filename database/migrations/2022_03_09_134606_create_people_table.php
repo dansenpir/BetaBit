@@ -17,7 +17,7 @@ class CreatePeopleTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->date('birthdate');
             $table->timestamps();
         });
