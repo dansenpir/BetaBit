@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdatePeople;
 use App\Models\People;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class PeopleController extends Controller
         return view('admin.dashboard', compact('people'));
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdatePeople $request)
     {
         $people = People::create($request->all());
 
