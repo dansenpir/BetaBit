@@ -56,9 +56,8 @@
                         <div class="px-12">
                             <h1 class="mb-2 text-md uppercase font-bold">Edição</h1>
                             @foreach ($people as $person)
-                            <form action="{{ route('people.edit', $person->id) }}" method="post">
+                            <form action="{{ route('people.edit', $person->id) }}" method="get">
                                 @csrf                                
-                                    <!-- <input type="hidden" name="_method" value="DELETE"> -->
                                     <button type="submit">Editar</button>
                             </form>
                             @endforeach
