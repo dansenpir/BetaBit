@@ -25,7 +25,7 @@
                                 <p>{{$person->name}}</p>
                             @endforeach
                         </div>
-                        <div class="px-24">
+                        <div class="px-12">
                             <h1 class="mb-2 text-md uppercase font-bold">Email</h1>
                             @foreach ($people as $person)
                                 <p>{{$person->email}}</p>
@@ -37,7 +37,7 @@
                                 <p>{{$person->phone}}</p>
                             @endforeach
                         </div>
-                        <div class="px-24">
+                        <div class="px-12">
                             <h1 class="mb-2 text-md uppercase font-bold">Nascimento</h1>
                             @foreach ($people as $person)
                                 <p>{{str_replace('-', '/', date('d-m-Y', strtotime($person->birthdate)))}}</p>
@@ -49,7 +49,17 @@
                             <form action="{{ route('people.destroy', $person->id) }}" method="post">
                                 @csrf                                
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit">Excluir</button>
+                                    <button type="submit">Deletar</button>
+                            </form>
+                            @endforeach
+                        </div>
+                        <div class="px-12">
+                            <h1 class="mb-2 text-md uppercase font-bold">Edição</h1>
+                            @foreach ($people as $person)
+                            <form action="{{ route('people.edit', $person->id) }}" method="post">
+                                @csrf                                
+                                    <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                                    <button type="submit">Editar</button>
                             </form>
                             @endforeach
                         </div>

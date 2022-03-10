@@ -26,7 +26,9 @@ class PeopleController extends Controller
     {
         $people = People::create($request->all());
 
-        return redirect()->route('dashboard');
+        return redirect()
+        ->route('dashboard')
+        ->with('success', 'Registro criado com sucesso!');
     }
 
     public function destroy($id) 
@@ -39,5 +41,27 @@ class PeopleController extends Controller
         return redirect()
         ->route('dashboard')
         ->with('success', 'Registro excluído com sucesso!');
+    }
+
+    public function edit($id) {
+        
+
+        if(!$people = People::find($id))
+            return redirect()->route('dashboard');
+
+        return view('admin.people.edit', compact('people'));
+    }
+
+    public function update(StoreUpdatePeople $request, $id) {
+        
+
+        if(!$people = People::find($id))
+            return redirect()->route('dashboard');
+
+        $people->update($request->all());
+
+        return redirect()
+        ->route('dashboard')
+        ->with('success', 'Registro atualizado com sucesso!');
     }
 }
