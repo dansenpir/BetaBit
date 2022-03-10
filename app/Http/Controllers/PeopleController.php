@@ -10,7 +10,7 @@ class PeopleController extends Controller
 {
     public function list()
     {
-        $people = People::get();
+        $people = People::latest()->paginate();
 
         return view('admin.dashboard', compact('people'));
     }

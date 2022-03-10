@@ -64,6 +64,7 @@
                             @endforeach
                         </div>
                     </div>
+                    {{$people->links()}}
                 </div>
             </div>
         </div>
