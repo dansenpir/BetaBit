@@ -5,24 +5,22 @@ use App\Http\Controllers\{
 };
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/dashboard', [PeopleController::class, 'list'])->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard/register', function () {
-    return view('admin.people.register');
-})->name('people.register');
+Route::get('/dashboard/people/register', [PeopleController::class, 'register'])->name('people.register');
 
-Route::post('/dashboard/store', [PeopleController::class, 'store'])->name('people.store');
+Route::post('/dashboard/people/store', [PeopleController::class, 'store'])->name('people.store');
+
+Route::delete('/dashboard/people/delete/{id}', [PeopleController::class, 'destroy'])->name('people.destroy');
 
 Route::get('/dashboard/edituser', function () {
     return view('admin.people.edit');
 })->name('people.edit');
 
-Route::get('/dashboard/rmuser', function () {
-    return view('admin.people.remove');
-})->name('people.remove');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 require __DIR__ . '/auth.php';
