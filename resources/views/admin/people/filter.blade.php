@@ -8,13 +8,13 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="flex items-center justify-between">
-                    <div class="p-6 bg-white">
+                <div class="flex items-center justify-between mr-48">
+                    <div class="p-6 bg-white border-b border-gray-200">
                         <a href="{{ route('people.register') }}" class="ml-4 text-lg text-gray-700 dark:text-gray-500 underline">Criar registro</a>
                     </div>
-                    <form action="{{ route('people.filter') }}" method="post" class="mr-96">
+                    <form action="{{ route('people.filter') }}" method="post">
                         @csrf
-                        <input type="text" name="filter" placeholder="Filtrar">
+                        <input type="text" name="search" placeholder="Filtrar">
                         <select name="type_filter" id="type_filter" placeholder="campo">
                             <option value="name">Nome</option>
                             <option value="email">Email</option>
@@ -24,7 +24,7 @@
                         <button class="py-2 px-4 border-2 rounded" type="submit">Filtrar</button>
                     </form>
                 </div>
-                <div class="py-6 px-10 bg-white border-gray-200">
+                <div class="p-6 bg-white border-b border-gray-200">
                     @if (session('success'))
                         <div class="my-4">
                             <h3 class="text-green-600 text-lg">{{session('success')}}</h3>
@@ -76,11 +76,7 @@
                             @endforeach
                         </div>
                     </div>
-                    @if (isset($filters))
-                        {{$people->appends($filters)->links()}}
-                    @else
-                        {{$people->links()}}
-                    @endif
+                    {{$people->links()}}
                 </div>
             </div>
         </div>

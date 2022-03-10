@@ -13,6 +13,7 @@ Route::post('/dashboard/people/store', [PeopleController::class, 'store'])->name
 Route::delete('/dashboard/people/delete/{id}', [PeopleController::class, 'destroy'])->name('people.destroy');
 Route::get('/dashboard/people/edit/{id}', [PeopleController::class, 'edit'])->name('people.edit');
 Route::put('/dashboard/people/update/{id}', [PeopleController::class, 'update'])->name('people.update');
+Route::any('/dashboard/people/filter', [PeopleController::class, 'filter'])->name('people.filter');
 
 
 Route::get('/', function () {

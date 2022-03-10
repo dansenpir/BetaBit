@@ -64,4 +64,26 @@ class PeopleController extends Controller
         ->route('dashboard')
         ->with('success', 'Registro atualizado com sucesso!');
     }
+
+    public function filter (Request $request)
+    {   
+
+        $filters = $request->except('_token');
+
+        if($request->type_filter === 'name')
+            $people = People::where('name', 'LIKE', "%{$request->filter}%")->paginate();
+
+        if($request->type_filter === 'email')
+            $people = People::where('email', 'LIKE', "%{$request->filter}%")->paginate();
+
+        if($request->type_filter === 'phone')
+            $people = People::where('phone', 'LIKE', "%{$request->filter}%")->paginate();
+
+        if($request->type_filter === 'birthdate') {
+            $birthYear = ($request->filter - date('Y')) * -1;
+
+            $people = People::where('birthdate', 'LIKE', "%{$birthYear}%")->paginate();
+        }
+        return view('admin.dashboard', compact('people', 'filters'));
+    }
 }
